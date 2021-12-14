@@ -1,0 +1,26 @@
+.fondo {
+    background-color: #120907;
+    border-radius: 25px;
+}
+
+/*img {
+   width: 50%;
+   height: 50%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}*/
+
+/*.card-body {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    border-bottom: 1px solid rgba(153, 153, 153, 0.383);
+}*/
