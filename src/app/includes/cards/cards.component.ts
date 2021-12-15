@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Datos_Pokemon } from 'src/app/models/Datos_Pokemon';
 import { Pokemon } from 'src/app/models/Pokemon';
 import { DataService } from '../../services/data.service';
 
@@ -9,8 +10,11 @@ import { DataService } from '../../services/data.service';
 })
 export class CardsComponent implements OnInit {
 
-  pokemons: Pokemon[] | any;
-  images: any
+  urlActual: string = 'https://pokeapi.co/api/v2/pokemon/';
+  next: string = '';
+  prev: string = '';
+  pokemons: Pokemon[];
+  images: string;
   constructor(private ds: DataService) { }
   //constructor() { }
 
@@ -20,26 +24,32 @@ export class CardsComponent implements OnInit {
 
   getPokemones (): void {
     //this.ds.getPokemones().subscribe(console.log);
-    this.ds.getPokemones().subscribe((res: any) => {
+    this.ds.getPokemones(this.urlActual).subscribe((res: any) => {
+      this.next = res.next;
+      this.prev = res.previous;
       this.pokemons = res.results;
-      console.log(this.pokemons);
-      /*this.pokemons.forEach(function (valor : any, indice: any, array: any)) {
-        console.log('indice  ' + indice + ' valor ' + valor);
-      }*/
       let cont = 0;
-      this.pokemons.forEach((poke: { url: any; }) => {
-        //console.log(poke.url);
-        //this.ds.getPokemon(poke.url).subscribe(console.log);
-        this.ds.getPokemon(poke.url).subscribe((data: any) => {
-          this.images = data.sprites.other.dream_world.front_default;
-          this.pokemons[cont].image = this.images;//////
-          //console.log(this.images);
-          //console.log(cont);
-          //console.log(this.pokemons[cont].image);
-          cont++;
+      console.log(this.pokemons);
+      this.pokemons.map((poke) => {
+        cont++;
+        this.ds.getPokemon(poke.url).subscribe((res: any) => {
+          this.images = res.sprites.other.dream_world.front_default;
+          poke.image = this.images;
         });
-      });
+      })
     });
+    //console.log(this.next);
+    
+  }
+
+  anterior(prev): void {
+    this.urlActual = this.prev;
+    this.getPokemones();
+  }
+
+  siguiente(next): void {
+    this.urlActual = this.next;
+    this.getPokemones();
   }
 
 }

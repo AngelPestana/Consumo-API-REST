@@ -3,6 +3,10 @@
     border-radius: 25px;
 }
 
+.card {
+    background-color: #212529;
+}
+
 /*img {
    width: 50%;
    height: 50%;

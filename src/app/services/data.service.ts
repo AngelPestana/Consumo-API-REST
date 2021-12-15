@@ -6,12 +6,13 @@ import { Injectable } from '@angular/core';
 })
 export class DataService {
 
-  private url: string = 'https://pokeapi.co/api/v2/pokemon/';
+  //private url: string = 'https://pokeapi.co/api/v2/pokemon/';
+  //'https://pokeapi.co/api/v2/pokemon/?offset=20&limit=20'
 
   constructor(private http: HttpClient) { }
 
-  getPokemones () {
-    return this.http.get(this.url);
+  getPokemones (url: string) {
+    return this.http.get(url);
   }
 
   getPokemon (url2: string) {

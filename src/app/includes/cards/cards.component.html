@@ -1,17 +1,23 @@
 <div class="container mt-4">
     <div class="py-4">
-        <div class="card fondo">
+        <div class="p-2 fondo">
             <h1 class="text-center text-white">Busca tu pokemon favorito</h1>
         </div>
     </div>
     <div class="row row-cols-1 row-cols-md-5 g-4 mt-1">
         <div class="col" *ngFor="let pokemon of pokemons">
-            <div class="card h-100">
-                <img src="{{pokemon.image}}" height="50%" width="50%" class="card-img-top" alt="..">
+            <div class="card h-100 p-3">
+                <img src="{{pokemon.image}}" height="100%" width="100%" class="card-img-top" alt="..">
                 <div class="card-body">
-                    <h5 class="card-title text-center">{{pokemon.name}}</h5>
+                    <h5 class="card-title text-center text-white">{{pokemon.name}}</h5>
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="text-center mt-5">
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-dark" (click)="anterior(prev)">Anterior</button>
+            <button type="button" class="btn btn-dark" (click)="siguiente(next)" title="">Siguiente</button>
         </div>
     </div>
 </div>
